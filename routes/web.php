@@ -40,7 +40,7 @@ Route::livewire('/news-edit/{id}', 'pages::backend.news-edit')
     ->name('backend.newsEdit');
 
 
-    Route::view('register', 'register')->name('register');
+  
 // midd
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
