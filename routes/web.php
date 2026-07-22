@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/clear-cache', function() {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
     \Illuminate\Support\Facades\Artisan::call('view:clear');
-    return 'Cache cleared successfully!';
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+    } catch (\Exception $e) {
+        // Suppress errors if link already exists
+    }
+    return 'Cache cleared and storage link configured!';
 });
 
 
