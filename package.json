@@ -3,16 +3,19 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite"
+        "build:css": "tailwindcss -i resources/css/app.css -o public/css/app.css --minify",
+        "build:js": "esbuild resources/js/passkeys.js --bundle --minify --outfile=public/js/passkeys.js",
+        "build": "npm run build:css && npm run build:js",
+        "dev:css": "tailwindcss -i resources/css/app.css -o public/css/app.css --watch",
+        "dev:js": "esbuild resources/js/passkeys.js --bundle --outfile=public/js/passkeys.js --watch",
+        "dev": "concurrently \"npm run dev:css\" \"npm run dev:js\""
     },
     "dependencies": {
         "@laravel/passkeys": "^0.2.0",
-        "@tailwindcss/vite": "^4.1.11",
+        "@tailwindcss/cli": "^4.0.7",
         "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^3.1",
-        "tailwindcss": "^4.0.7",
-        "vite": "^8.0.0"
+        "esbuild": "^0.25.0",
+        "tailwindcss": "^4.0.7"
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
