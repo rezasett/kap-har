@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::view('/', 'welcome')->name('home');
+Route::get('/clear-cache', function() {
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    return 'Cache cleared successfully!';
+});
 
 
 Route::livewire('/', 'pages::web.home')->name('web.home');
